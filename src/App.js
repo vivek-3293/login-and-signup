@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="App">
     <RouterProvider router={route}></RouterProvider>
-    <ToastContainer theme="dark" autoClose={1000} />
+    <ToastContainer />
   </div>
   );
 }
