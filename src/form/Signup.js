@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import "./auth.css";
+import "../form/style.css";
 
 const Signup = () => {
   const navigate = useNavigate();
