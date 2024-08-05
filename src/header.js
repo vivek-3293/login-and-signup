@@ -1,80 +1,127 @@
-import React, { useState } from "react";
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link, useNavigate } from "react-router-dom";
+import HeadLogo from "./images/Logo_Animations.webp";
+import "./Header.css"; 
+import { useAuth } from "./AuthContext";
+import img1 from "./images/2.png";
+import img2 from "./images/3.png";
 
-const Header = () => {
-  const [color, setColor] = useState("olive");
+function Header() {
+  const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
+
+  const handleLogoutClick = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <>
-      <div
-        className="bgDefault w-100 "
-        style={{ backgroundColor: color, height: "100vh" }}
-      >
-        <div className="fixed-bottom d-flex flex-wrap justify-content-center px-2">
-          <div
-            className="d-flex flex-wrap justify-content-center
-             bg-white px-3 py-2 rounded-pill mb-3"
-          >
+      <header>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container">
+            <Link className="navbar-brand" to="/">
+              <img
+                src={HeadLogo}
+                alt="HeadLogo"
+                className="img-fluid logo-img"
+              />
+            </Link>
             <button
-              onClick={() => setColor("red")}
-              className="border-0 px-3 py-1 mx-2 rounded-pill text-white"
-              style={{ backgroundColor: "red" }}
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
             >
-              Red
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <button
-              onClick={() => setColor("green")}
-              className="border-0 px-3 py-1 mx-2 rounded-pill text-white"
-              style={{ backgroundColor: "green" }}
-            >
-              Green
-            </button>
-            <button
-              onClick={() => setColor("blue")}
-              className="border-0 px-3 py-1 mx-2 rounded-pill text-white"
-              style={{ backgroundColor: "blue" }}
-            >
-              Blue
-            </button>
-            <button
-              onClick={() => setColor("pink")}
-              className="border-0 px-3 py-1 mx-2 rounded-pill text-black"
-              style={{ backgroundColor: "pink" }}
-            >
-              Pink
-            </button>
-            <button
-              onClick={() => setColor("black")}
-              className="border-0 px-3 py-1 mx-2 rounded-pill text-white"
-              style={{ backgroundColor: "black" }}
-            >
-              Black
-            </button>
-            <button
-              onClick={() => setColor("olive")}
-              className="border-0 px-3 py-1 mx-2 rounded-pill text-white"
-              style={{ backgroundColor: "olive" }}
-            >
-              Olive
-            </button>
-            <button
-              onClick={() => setColor("yellow")}
-              className="border-0 px-3 py-1 mx-2 rounded-pill text-black"
-              style={{ backgroundColor: "yellow" }}
-            >
-              Yellow
-            </button>
-            <button
-              onClick={() => setColor("purple")}
-              className="border-0 px-3 py-1 mx-2 rounded-pill text-white"
-              style={{ backgroundColor: "purple" }}
-            >
-              Purple
-            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav ms-auto align-items-center">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">
+                    Home
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/shop">
+                    Shop
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/review">
+                    Review
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/product">
+                    Product
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/blog">
+                    Blog
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/contact">
+                    Contact
+                  </Link>
+                </li>
+                {isAuthenticated ? (
+                  <li className="nav-item">
+                    <button
+                      className="btn btn-outline-primary ms-3"
+                      onClick={handleLogoutClick}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                ) : (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/">
+                      <button className="btn btn-primary ms-3">Login</button>
+                    </Link>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <div className="container mt-5">
+        <div className="banner-head text-center">
+          <h2>Header Banner</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
+            nemo asperiores alias similique ducimus quasi quidem atque neque! Et
+            necessitatibus quidem animi laboriosam, quasi sed libero consequatur
+            neque maxime excepturi?
+          </p>
+        </div>
+        <div className="position-relative py-80">
+          <div className="row">
+            <div className="col-12 col-md-7 mb-4">
+              <img src={img1} alt="img1" className="img-fluid" />
+            </div>
+            <div className="col-12 col-md-7 mb-4 position-absolute img2-banner">
+              <img src={img2} alt="img2" className="img-fluid" />
+            </div>
           </div>
         </div>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
+            nemo asperiores alias similique ducimus quasi quidem atque neque! Et
+            necessitatibus quidem animi laboriosam, quasi sed libero consequatur
+            neque maxime excepturi?
+          </p>
       </div>
     </>
   );
-};
+}
 
 export default Header;

@@ -1,36 +1,21 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import Signup from "./form/Signup";
-import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./form/Login";
+import Signup from "./form/Signup";
 import Header from "./header";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from "react-toastify";
-
+import { AuthProvider } from "./AuthContext";
 
 function App() {
-  const route = createBrowserRouter([
-    
-    {
-      path: "/",
-      element: <Login />,
-    },
-    {
-      path: "/signup",
-      element: <Signup />,
-    },
-
-    {
-      path: "/header",
-      element: <Header />
-    }
-
-  ]);
   return (
-    <div className="App">
-    <RouterProvider router={route}></RouterProvider>
-    <ToastContainer />
-  </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/header" element={<Header />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

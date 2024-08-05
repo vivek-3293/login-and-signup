@@ -1,33 +1,31 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import "../form/style.css";
+import "../form/style.css"; 
+import { useAuth } from "../AuthContext";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch('https://dummyjson.com/auth/login', {
+    fetch('https://reqres.in/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username,
-        password,
-      })
+      body: JSON.stringify({ email, password })
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
-      if (data.token) {
+      if (data.token) { 
+        login({ email });
         navigate("/header");
-        toast.success("Login Successfully")
+        toast.success("Login Successfully");
       } 
     })
     .catch(err => {
-      console.error("Error:", err);
       toast.error(err);
     });
   };
@@ -37,15 +35,15 @@ const Login = () => {
       <h3>Sign In</h3>
       <form className="auth-form" onSubmit={handleLogin}>
         <div className="input-group">
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="email">Email:</label>
           <input
-            type="username"
-            id="username"
-            name="username"
+            type="email"
+            id="email"
+            name="email"
             autoComplete="off"
-            placeholder="Enter your Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>

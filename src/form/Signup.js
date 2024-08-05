@@ -1,15 +1,48 @@
-import React from "react";
+//Email :- eve.holt@reqres.in
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useAuth } from "../AuthContext";
 import "../form/style.css";
 
 const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSignup = (event) => {
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     navigate("/header");
+  //   }
+  // }, [navigate]);
+
+  const handleSignup = async (event) => {
     event.preventDefault();
-    navigate("/");
-    toast.success("SignUp Successfully");
+    try {
+      const response = await fetch('https://reqres.in/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      });
+
+  
+      const data = await response.json();
+
+      if (data.token) {
+        const userInfo = { email, token: data.token };
+        login(userInfo);
+        navigate("/header");
+        toast.success("SignUp Successfully");
+      }
+    } catch (error) {
+      toast.error("Signup failed: " + error.message);
+    }
   };
 
   return (
@@ -17,14 +50,16 @@ const Signup = () => {
       <h3>Sign Up</h3>
       <form className="auth-form" onSubmit={handleSignup}>
         <div className="input-group">
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Email:</label>
           <input
-            type="text"
-            id="username"
-            name="username"
+            type="email"
+            id="email"
+            name="email"
             autoComplete="off"
-            placeholder="Enter your Username"
-            required
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            
           />
         </div>
         <div className="input-group">
@@ -35,7 +70,9 @@ const Signup = () => {
             name="password"
             autoComplete="off"
             placeholder="Enter your Password"
-            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            
           />
         </div>
         <button type="submit" className="btn btn-success">
