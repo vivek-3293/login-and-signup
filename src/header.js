@@ -199,7 +199,7 @@ function Header() {
                 {isAuthenticated ? (
                   <div className="nav-item">
                     <button
-                      className="nav-btn btn-outline-primary ms-3"
+                      className="nav-btn btn-outline-primary"
                       onClick={handleLogoutClick}
                     >
                       Logout
@@ -208,7 +208,7 @@ function Header() {
                 ) : (
                   <div className="nav-item">
                     <Link className="nav-link" to="/">
-                      <button className="btn btn-primary ms-3">Login</button>
+                      <button className="btn btn-primary">Login</button>
                     </Link>
                   </div>
                 )}

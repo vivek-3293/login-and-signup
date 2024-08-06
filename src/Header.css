@@ -4,7 +4,7 @@
   }
   
   .navbar-nav .nav-item .nav-link {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 0.5rem 1rem;
     text-align: center;
     font-weight: bold;
@@ -13,6 +13,8 @@
   .nav-item{
     display: flex;
     justify-content: center;
+    align-items: center;
+
   }
   .btn{
     text-align: center;
