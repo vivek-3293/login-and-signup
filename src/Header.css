@@ -1,4 +1,4 @@
-
+/* Navbar Styles */
 .logo-img {
     max-width: 150px; 
   }
@@ -6,64 +6,111 @@
   .navbar-nav .nav-item .nav-link {
     font-size: 1rem;
     padding: 0.5rem 1rem;
-  }
-  
-  .banner-head {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    text-align: center;
+    font-weight: bold;
   }
 
-  .py-80{
-    padding-bottom: 80px;
+  .nav-item{
+    display: flex;
+    justify-content: center;
   }
-  .position-relative {
-    position: relative;
+  .btn{
+    text-align: center;
   }
   
+   
+  /* Banner Styles */
+
+.banner-head {
+  text-align: center;
+}
+
+.banner-head h2 {
+  font-size: 2rem;
+}
+
+.banner-head p {
+  font-size: 1rem;
+}
+
+.img-fluid {
+  height: auto;
+}
+
+.position-relative {
+  position: relative;
+  padding: 80px 0;
+}
+
+.img2-banner {
+  position: absolute;
+  top: 130px;
+  right: -35px;
+}
+
+/* Responsive Media Styles */
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  .banner-head h2 {
+    font-size: 1.75rem;
+  }
+
+  .banner-head p {
+    font-size: 0.9rem;
+  }
+
   .img2-banner {
-    position: absolute;
-    top: 70px; 
-    left: 450px;
+    top: 120px;
+    left: 311px;
   }
-  
-  @media (max-width: 767px) {
-    .img2-wrapper {
-      top: -10px; 
-      left: -5px; 
-      width: calc(100% + 5px); 
-    }
-  }
-  
+}
 
-
-
-  
-  /* Media Queries */
-  @media (max-width: 768px) {
-    .banner-head h2 {
-      font-size: 1.5rem;
-    }
-    
-    .banner-head p {
-      font-size: 0.9rem;
-      padding: 0 1rem;
-    }
-  
-    .navbar-nav .nav-item .nav-link {
-      font-size: 0.9rem;
-      padding: 0.4rem 0.8rem;
-    }
+/* Mobiles */
+@media (max-width: 767px) {
+  .banner-head h2 {
+    font-size: 1.5rem;
   }
   
-  @media (max-width: 576px) {
-    .navbar-nav .nav-item .nav-link {
-      font-size: 0.8rem;
-      padding: 0.3rem 0.6rem;
-    }
-  
-    .btn {
-      padding: 0.3rem 0.6rem;
-      font-size: 0.8rem;
-    }
+  .banner-head p {
+    font-size: 0.9rem;
+    padding: 0 1rem;
   }
-  
+
+  .navbar-nav .nav-item .nav-link {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .navbar-nav .nav-item .nav-link {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+/* Banner Media Styles */
+  .banner-head h2 {
+    font-size: 1.5rem;
+  }
+
+  .banner-head p {
+    font-size: 0.8rem;
+  }
+
+  .img2-banner {
+    top: 80px;
+    left: 160px;
+  }
+
+  .position-relative {
+    padding: 50px 0;
+  }
+
+  .col-md-7 {
+    width: 100%;
+  }
+}

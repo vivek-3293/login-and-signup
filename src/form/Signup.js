@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useAuth } from "../AuthContext";
 import "../form/style.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const [email, setEmail] = useState("");
