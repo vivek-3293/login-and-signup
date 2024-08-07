@@ -11,6 +11,12 @@ const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     navigate("/header");
+  //   }
+  // }, [navigate]);
+  
   const handleLogin = (e) => {
     e.preventDefault();
     fetch('https://reqres.in/api/login', {
